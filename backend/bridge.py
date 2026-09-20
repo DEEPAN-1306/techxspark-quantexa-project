@@ -291,7 +291,40 @@ def handle(action: str, payload_str: str = "{}"):
         return {"error": f"Unknown action: {action}"}
 
 if __name__ == "__main__":
-    action = sys.argv[1] if len(sys.argv) > 1 else "health"
-    payload = sys.argv[2] if len(sys.argv) > 2 else "{}"
-    result = handle(action, payload)
-    print(json.dumps(result))
+    try:
+        action = sys.argv[1] if len(sys.argv) > 1 else "health"
+        payload = sys.argv[2] if len(sys.argv) > 2 else "{}"
+
+        print(
+            json.dumps({
+                "bridge_starting": True,
+                "action": action
+            }),
+            file=sys.stderr,
+            flush=True
+        )
+
+        result = handle(action, payload)
+
+        print(json.dumps(result), flush=True)
+
+    except Exception as e:
+        import traceback
+
+        print(
+            f"BRIDGE ERROR: {type(e).__name__}: {e}",
+            file=sys.stderr,
+            flush=True
+        )
+
+        traceback.print_exc(file=sys.stderr)
+
+        print(
+            json.dumps({
+                "error": str(e),
+                "type": type(e).__name__
+            }),
+            flush=True
+        )
+
+        sys.exit(1)
