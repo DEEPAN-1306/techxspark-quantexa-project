@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+/* Leaflet Container Stacking Context Isolation */
+.leaflet-container {
+  isolation: isolate;
+  z-index: 10 !important;
+}
+
+/* Leaflet DivIcon and Map Custom Styling Overrides */
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-popup {
+  margin-bottom: 20px !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #334155 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7) !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-content {
+  margin: 10px 14px !important;
+  line-height: 1.45 !important;
+  font-family: inherit !important;
+}
+
+.leaflet-popup-tip {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+}
+
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  padding: 4px 6px !important;
+  top: 4px !important;
+  right: 4px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #38bdf8 !important;
+}
+
+.emergency-corridor-glow {
+  filter: drop-shadow(0 0 10px #22c55e) drop-shadow(0 0 20px rgba(34, 197, 94, 0.7));
+  stroke-dasharray: 8, 8;
+  animation: dashMove 1.5s linear infinite;
+}
+
+@keyframes dashMove {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
